@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  ============================================================
+  PAGE: Services (services.html)
+  DESCRIPTION: Full list of all services with descriptions,
+               process steps, and call to action.
+  STYLES: css/style.css
+  SCRIPTS: js/main.js
+  ============================================================
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Steve.dev</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* ── SERVICES LIST ── */
+    .services-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      margin-top: 72px;
+      align-items: start;             
+    }
+    /* Left column sticks while right scrolls */
+    .services-sticky { position: sticky; top: 110px; }
+
+    .service-list { display: flex; flex-direction: column; gap: 2px; }
+
+    /* Each service row */
+    .service-row {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      gap: 24px;
+      align-items: start;
+      border-top: 1px solid var(--border);
+      padding: 28px 12px;
+      border-radius: 10px;
+      margin: 0 -12px;
+      transition: background 0.2s;
+    }
+    .service-row:last-child { border-bottom: 1px solid var(--border); }
+    .service-row:hover { background: var(--bg3); }
+
+    .svc-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 600;
+      padding-top: 4px;
+    }
+    .svc-text h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 7px; color: var(--text); }
+    .svc-text p  { font-size: 0.88rem; line-height: 1.65; color: var(--muted); }
+
+    .svc-price-badge {
+      background: var(--bg4);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+
+    /* ── PROCESS SECTION ── */
+    .process-list {
+      margin-top: 60px;
+      position: relative;
+    }
+    /* Vertical connecting line on the left */
+    .process-list::before {
+      content: '';
+      position: absolute;
+      left: 23px; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .process-step {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 28px;
+      margin-bottom: 52px;
+      align-items: start;
+    }
+    .step-circle {
+      width: 46px; height: 46px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      position: relative; z-index: 2;
+    }
+    .step-text h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 9px; padding-top: 10px; color: var(--text); }
+    .step-text p  { font-size: 0.93rem; line-height: 1.8; color: var(--muted2); }
+    .step-badge {
+      display: inline-block;
+      margin-top: 12px;
+      background: rgba(232,255,71,0.08);
+      border: 1px solid rgba(232,255,71,0.15);
+      padding: 4px 14px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      color: var(--accent);
+    }
+
+    @media (max-width: 900px) {
+      .services-layout { grid-template-columns: 1fr; gap: 48px; }
+      .services-sticky { position: static; }
+      .service-row { 
+        grid-template-columns: 36px 1fr auto;
+        gap: 16px;
+        padding: 20px 12px;
+      }
+      .svc-price-badge { 
+        font-size: 0.75rem;
+        padding: 6px 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .service-row {
+        grid-template-columns: 32px 1fr;
+        gap: 12px;
+      }
+      .svc-num {
+        font-size: 0.7rem;
+      }
+      .svc-text h3 {
+        font-size: 0.95rem;
+      }
+      .svc-text p {
+        font-size: 0.8rem;
+      }
+      .svc-price-badge {
+        grid-column: 2;
+        margin-top: 10px;
+        font-size: 0.7rem;
+        padding: 5px 10px;
+      }
+    }
+
+/* ── REDESIGNED FOOTER ── */
+    .footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 56px 6% 28px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 52px;
+      margin-bottom: 40px;
+    }
+     .footer-brand-desc {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.7;
+      max-width: 280px;
+      margin-top: 12px;
+    }
+    /* Footer social icons */
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .footer-soc-btn {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; text-decoration: none; color: var(--text);
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .footer-soc-btn:hover { transform: translateY(-3px); }
+    .footer-soc-btn.insta:hover { background: #dc2743; border-color: #dc2743; }
+    .footer-soc-btn.fb:hover    { background: #1877F2; border-color: #1877F2; }
+    .footer-soc-btn.yt:hover    { background: #FF0000; border-color: #FF0000; }
+    .footer-soc-btn.wa:hover    { background: #25D366; border-color: #25D366; }
+
+    .footer-col h5 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--muted2);
+      margin-bottom: 16px; font-weight: 700;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul a { color: var(--muted); font-size: 0.86rem; text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--accent); }
+
+        /* Footer bottom bar */
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { color: var(--muted); font-size: 0.8rem; }
+    .footer-bottom a { color: var(--accent); text-decoration: none; }
+    /* Made with love tag */
+    .footer-love {
+      display: flex; align-items: center; gap: 6px;
+      color: var(--muted); font-size: 0.8rem;
+    }
+    .heart {
+      color: #ff4d6d;
+      animation: heartbeat 1.4s ease-in-out infinite;
+      display: inline-block;
+    }
+    @keyframes heartbeat {
+      0%,100%{ transform: scale(1); }
+      14%    { transform: scale(1.25); }
+      28%    { transform: scale(1); }
+      42%    { transform: scale(1.15); }
+      56%    { transform: scale(1); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 44px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+    }
+    @media (max-width: 500px) {
+      .action-btns { grid-template-columns: 1fr; }
+      .social-row { gap: 8px; }
+      .social-btn { padding: 9px 14px; font-size: 0.78rem; }
+    }
+
+  </style>
+</head>
+<body>
+   <!-- ── FLOATING WHATSAPP BUTTON ── -->
+<a href="https://wa.me/919492205132?text=Hi , I’m interested in getting a professional website built. Can you share details?"
+   class="float-wa" target="_blank" title="Chat on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<style>
+.float-wa  {
+  position: fixed;
+  bottom: 100px;        /* sits above the mobile bottom nav */
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  text-decoration: none;
+  z-index: 998;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+  animation: waPulse 2s ease-in-out infinite;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.float-wa:hover {
+  transform: scale(1.12);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.7);
+}
+@keyframes waPulse {
+  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+  50%      { box-shadow: 0 4px 32px rgba(37,211,102,0.85); }
+}
+
+/* On desktop — position a bit lower since no bottom nav */
+@media (min-width: 961px) {
+  .float-wa { bottom: 28px; }
+}
+</style>
+
+  <!-- Custom cursor elements -->
+  <div class="cursor-ball" id="cursorBall"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">SV<span>.</span>WaveTech</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="portfolio.html">Work</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><button class="theme-toggle" id="themeToggle">☀️</button></li>
+      <li><a href="contact.html" class="nav-hire">Hire Me</a></li>
+    </ul>
+    <!-- Mobile controls (hamburger + theme toggle) -->
+    <div class="mobile-controls">
+      <button class="theme-toggle" id="themeToggleMobile" title="Toggle theme">☀️</button>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-close" id="mobileClose">✕</button>
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="services.html">Services</a><a href="portfolio.html">Work</a>
+    <a href="pricing.html">Pricing</a><a href="contact.html">Contact</a>
+    <a href="contact.html" style="color:var(--accent)">Hire Me →</a>
+  </div>
+
+  <!-- ── PAGE HERO ── -->
+  <div class="page-hero">
+    <div class="section-tag">Services</div>
+    <h1>What We <span style="color:var(--accent)">Build</span></h1>
+    <p>From simple business pages to full e-commerce stores — designed and developed to grow your business.</p>
+  </div>
+
+  <!-- ── SERVICES LIST ── -->
+  <section class="section section-alt">
+    <div class="services-layout">
+
+      <!-- Left: sticky intro -->
+      <div class="services-sticky reveal">
+        <div class="section-tag">All Services</div>
+        <h2 class="section-title">Every Type of Website</h2>
+        <p class="section-sub">Whatever your business needs, I can build it. Fast, affordable, and professional.</p>
+        <br/><br/>
+        <a href="contact.html" class="btn-primary">Start a Project →</a>
+      </div>
+
+      <!-- Right: service rows -->
+      <div class="service-list reveal delay-2">
+        <div class="service-row">
+          <span class="svc-num">01</span>
+          <div class="svc-text">
+            <h3>Business Website</h3>
+            <p>Professional multi-page sites for clinics, shops, coaching centers, and service businesses. SEO-ready, fast-loading, and looks great on all devices.</p>
+          </div>
+          <span class="svc-price-badge">From ₹7,999</span>
+        </div>
+        <div class="service-row">
+          <span class="svc-num">02</span>
+          <div class="svc-text">
+            <h3>E-Commerce Store</h3>
+            <p>Full online stores with product listings, shopping cart, secure payment gateway, and order management. Sell anything, anywhere in India.</p>
+          </div>
+          <span class="svc-price-badge">From ₹14,999</span>
+        </div>
+        <div class="service-row">
+          <span class="svc-num">03</span>
+          <div class="svc-text">
+            <h3>Landing Page</h3>
+            <p>High-converting single-page sites for products, campaigns, or lead generation. Designed to get visitors to take one specific action.</p>
+          </div>
+          <span class="svc-price-badge">From ₹2,499</span>
+        </div>
+        <div class="service-row">
+          <span class="svc-num">04</span>
+          <div class="svc-text">
+            <h3>Portfolio / Personal Site</h3>
+            <p>Beautiful personal or professional portfolio sites for doctors, lawyers, consultants, artists, and freelancers.</p>
+          </div>
+          <span class="svc-price-badge">From ₹3,999</span>
+        </div>
+        <div class="service-row">
+          <span class="svc-num">05</span>
+          <div class="svc-text">
+            <h3>Site Redesign</h3>
+            <p>Have an outdated website that's embarrassing to share? I'll redesign it from scratch — modern look, better speed, better user experience.</p>
+          </div>
+          <span class="svc-price-badge">From ₹2,999</span>
+        </div>
+        <div class="service-row">
+          <span class="svc-num">06</span>
+          <div class="svc-text">
+            <h3>Speed & SEO Boost</h3>
+            <p>Slow site? Not showing up on Google? I'll fix performance issues, optimise images, and implement on-page SEO to help you rank better.</p>
+          </div>
+          <span class="svc-price-badge">From ₹1,999</span>
+        </div>
+        <div class="service-row">
+          <span class="svc-num">07</span>
+          <div class="svc-text">
+            <h3>Monthly Maintenance</h3>
+            <p>Regular updates, security backups, plugin management, and content edits. Keep your site healthy and running perfectly every month.</p>
+          </div>
+          <span class="svc-price-badge">₹499–₹2,999/mo</span>
+        </div>
+        <div class="service-row">
+          <span class="svc-num">08</span>
+          <div class="svc-text">
+            <h3>Custom Development</h3>
+            <p>Need something unique? I'll build custom features or functionality tailored to your specific needs.</p>
+          </div>
+          <span class="svc-price-badge">From ₹2,999</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESS SECTION ── -->
+  <section class="section">
+    <div class="reveal">
+      <div class="section-tag">How We Work</div>
+      <h2 class="section-title">Our Process</h2>
+      <p class="section-sub">A clear, simple workflow so you always know what's happening with your project.</p>
+    </div>
+
+    <div class="process-list reveal delay-2">
+      <div class="process-step reveal">
+        <div class="step-circle">01</div>
+        <div class="step-text">
+          <h3>Discovery Call</h3>
+          <p>We start with a quick chat — WhatsApp, call, or in-person — where I understand your business, goals, and what you need from your website. No jargon, just plain conversation.</p>
+          <span class="step-badge">Day 1</span>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-circle">02</div>
+        <div class="step-text">
+          <h3>Planning & Quote</h3>
+          <p>We send you a clear breakdown of what will be built, what it costs, and how long it takes. You pay 50% upfront and work begins. No hidden charges — ever.</p>
+          <span class="step-badge">Day 1–2</span>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-circle">03</div>
+        <div class="step-text">
+          <h3>Design & Development</h3>
+          <p>We build your site with a clean structure, pixel-perfect design, and full mobile responsiveness. Fast load times and SEO are baked in from the start.</p>
+          <span class="step-badge">Day 2–4</span>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-circle">04</div>
+        <div class="step-text">
+          <h3>Review & Revisions</h3>
+          <p>We share a live preview for your feedback. We go through revisions together until everything is exactly right. Up to 3 rounds of changes included.</p>
+          <span class="step-badge">Day 4–5</span>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-circle">05</div>
+        <div class="step-text">
+          <h3>Launch & Handover</h3>
+          <p>Once you're happy, we go live! We handle domain setup, hosting configuration, and final checks. You receive full ownership of your website.</p>
+          <span class="step-badge">Day 5–7</span>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-circle">06</div>
+        <div class="step-text">
+          <h3>Ongoing Support</h3>
+          <p>After launch we're still available for fixes, updates, and questions. Optional monthly maintenance plans keep your site running perfectly.</p>
+          <span class="step-badge">Ongoing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <div style="background:var(--accent); padding:80px 6%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:32px; position:relative; z-index:2;">
+    <h2 style="font-family:'Syne',sans-serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; color:#08080f; letter-spacing:-0.03em; line-height:1.15; max-width:500px;">
+      Not sure which service you need? Let's talk.
+    </h2>
+    <a href="contact.html" style="background:#08080f; color:var(--accent); padding:18px 36px; border-radius:6px; font-weight:700; font-size:0.9rem; text-decoration:none; text-transform:uppercase; letter-spacing:0.06em;">
+      Contact Me →
+    </a>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       REDESIGNED FOOTER
+       Social icons repeated here for easy access.
+       To update links: search "YOUR_FACEBOOK_LINK" etc.
+       ══════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-top">
+
+      <!-- Brand + social icons -->
+      <div>
+        <a href="index.html" class="nav-logo">SV<span>.</span>WaveTech</a>
+        <p class="footer-brand-desc">
+          Web developers from Rajahmundry building fast, professional websites
+          for businesses across India. Clean code, honest pricing, real results.
+        </p>
+        <!-- Footer social icon row -->
+        <div class="footer-social">
+          <a href="https://www.instagram.com/sv_wavetech/" class="footer-soc-btn insta" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="YOUR_FACEBOOK_LINK"                      class="footer-soc-btn fb"    target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="YOUR_YOUTUBE_LINK"                       class="footer-soc-btn yt"    target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://wa.me/918179845326"              class="footer-soc-btn wa"    target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- Services column -->
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html">Business Websites</a></li>
+          <li><a href="services.html">E-Commerce Stores</a></li>
+          <li><a href="services.html">Landing Pages</a></li>
+          <li><a href="services.html">Site Redesign</a></li>
+          <li><a href="services.html">SEO & Speed</a></li>
+          <li><a href="services.html">Maintenance</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick links column -->
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="about.html">About Me</a></li>
+          <li><a href="portfolio.html">My Work</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <p>© 2026 SV.WaveTech | Web Developers, Rajahmundry, AP</p>
+      <div class="footer-love">
+        Made with <span class="heart">♥</span> in Rajahmundry 🇮🇳
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"><div class="toast-dot"></div><span id="toastText"></span></div>
+  <script src="js/main.js"></script>
+
+  <script>
+    // Theme toggle handled by initAllThemeToggles() in main.js — no extra script needed
+  </script>
+  
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="mob-bottom-nav" id="mobBottomNav">
+    <ul>
+      <li><a href="index.html"><span class="bn-icon"><i class="fa-solid fa-house"></i></span>Home</a></li>
+      <li><a href="portfolio.html"><span class="bn-icon"><i class="fa-solid fa-briefcase"></i></span>Work</a></li>
+      <li><a href="services.html"><span class="bn-icon"><i class="fa-solid fa-bolt"></i></span>Services</a></li>
+      <li><a href="pricing.html"><span class="bn-icon"><i class="fa-solid fa-coins"></i></span>Pricing</a></li>
+      <li><a href="contact.html"><span class="bn-icon"><i class="fa-solid fa-phone"></i></span>Contact</a></li>
+    </ul>
+  </nav>
+
+</body>
+</html>

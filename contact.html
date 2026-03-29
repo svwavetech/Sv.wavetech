@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  ============================================================
+  PAGE: Contact (contact.html)
+  DESCRIPTION: Contact form + WhatsApp/call/social links.
+  
+  TO UPDATE YOUR SOCIAL LINKS:
+    - Instagram : Already set → https://www.instagram.com/sv_wavetech/
+    - Facebook  : Search "YOUR_FACEBOOK_LINK" and replace
+    - YouTube   : Search "YOUR_YOUTUBE_LINK" and replace
+    - WhatsApp  : Search "818179845326" and replace with your number
+    - Phone     : Search "918179845326" and replace with your number
+  ============================================================
+-->
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+  <title>Contact — Steve.dev</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+
+    /* ── CONTACT LAYOUT ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 64px;
+      margin-top: 56px;
+      align-items: start;
+    }
+
+    /* ── LEFT SIDE ── */
+    .contact-info h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .contact-info > p {
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+    }
+
+    /* Contact detail cards */
+    .contact-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .contact-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 18px;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 12px; text-decoration: none; color: var(--text);
+      font-size: 0.9rem;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .contact-item:hover {
+      border-color: rgba(232,255,71,0.35);
+      background: rgba(232,255,71,0.03);
+      transform: translateX(4px);
+    }
+    .contact-item .ci-icon { font-size: 1.1rem; width: 28px; text-align: center; flex-shrink: 0; }
+    .contact-item .ci-label { color: var(--muted); font-size: 0.72rem; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .contact-item .ci-value { font-weight: 600; font-size: 0.88rem; }
+
+    /* ── ACTION BUTTONS (WhatsApp + Call) ── */
+    .action-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    /* WhatsApp button — green */
+    .btn-whatsapp {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: #25d366; color: #fff;
+      padding: 14px 20px; border-radius: 12px;
+      font-weight: 700; font-size: 0.9rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .btn-whatsapp::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.1);
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+    }
+    .btn-whatsapp:hover::before { transform: translateX(0); }
+    .btn-whatsapp:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(37,211,102,0.4);
+    }
+    .btn-whatsapp .btn-icon { font-size: 1.25rem; }
+
+    /* Call button — accent */
+    .btn-call {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--bg3); color: var(--text);
+      border: 1.5px solid var(--border2);
+      padding: 14px 20px; border-radius: 12px;
+      font-weight: 700; font-size: 0.9rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .btn-call:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      background: rgba(232,255,71,0.06);
+      box-shadow: 0 10px 28px rgba(232,255,71,0.15);
+    }
+    .btn-call .btn-icon {
+      font-size: 1.2rem;
+      animation: ringPhone 2.5s ease-in-out infinite;
+    }
+    @keyframes ringPhone {
+      0%, 100% { transform: rotate(0deg); }
+      10%       { transform: rotate(-15deg); }
+      20%       { transform: rotate(15deg); }
+      30%       { transform: rotate(-10deg); }
+      40%       { transform: rotate(10deg); }
+      50%       { transform: rotate(0deg); }
+    }
+
+    /* ── SOCIAL MEDIA ROW ── */
+    .social-section { margin-bottom: 24px; }
+    .social-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .social-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .social-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 18px; border-radius: 100px;
+      font-size: 0.82rem; font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border2);
+      background: var(--bg3);
+      color: var(--text);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+    .social-btn:hover { transform: translateY(-3px); }
+    .social-btn .s-icon { font-size: 1.05rem; }
+
+    /* Each platform color on hover */
+    .social-btn.insta:hover  { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); border-color: transparent; color: #fff; box-shadow: 0 8px 24px rgba(220,39,67,0.4); }
+    .social-btn.fb:hover     { background: #1877F2; border-color: transparent; color: #fff; box-shadow: 0 8px 24px rgba(24,119,242,0.4); }
+    .social-btn.yt:hover     { background: #FF0000; border-color: transparent; color: #fff; box-shadow: 0 8px 24px rgba(255,0,0,0.4); }
+    .social-btn.wa:hover     { background: #25D366; border-color: transparent; color: #fff; box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
+
+    /* Availability dot */
+    .availability-line {
+      display: flex; align-items: center; gap: 8px;
+      color: var(--muted2); font-size: 0.84rem;
+    }
+    .avail-dot {
+      width: 8px; height: 8px;
+      background: #4ade80; border-radius: 50%;
+      animation: pulse 2s infinite; flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0%,100%{ opacity:1; transform:scale(1); }
+      50%    { opacity:0.4; transform:scale(1.5); }
+    }
+
+    /* ── RIGHT SIDE: CONTACT FORM ── */
+    .contact-form { display: flex; flex-direction: column; gap: 13px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .cf-field { display: flex; flex-direction: column; gap: 6px; }
+    .cf-label {
+      font-size: 0.73rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--muted); font-weight: 500;
+    }
+    .cf-input {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 10px; padding: 13px 15px;
+      color: var(--text); font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem; outline: none; width: 100%;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .cf-input:focus {
+      border-color: rgba(232,255,71,0.4);
+      box-shadow: 0 0 0 3px rgba(232,255,71,0.08);
+    }
+    .cf-input::placeholder { color: var(--muted); }
+    textarea.cf-input { resize: vertical; min-height: 130px; }
+    .cf-submit {
+      background: var(--accent); color: #08080f;
+      border: none; padding: 15px; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif; font-weight: 700;
+      font-size: 0.95rem; cursor: pointer;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 4px; position: relative; overflow: hidden;
+    }
+    .cf-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(232,255,71,0.35);
+    }
+    .cf-submit:active { transform: scale(0.98); }
+
+    /* ── REDESIGNED FOOTER ── */
+    .footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 56px 6% 28px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 52px;
+      margin-bottom: 40px;
+    }
+    .footer-brand-desc {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.7;
+      max-width: 280px;
+      margin-top: 12px;
+    }
+    /* Footer social icons */
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .footer-soc-btn {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; text-decoration: none; color: var(--text);
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .footer-soc-btn:hover { transform: translateY(-3px); }
+    .footer-soc-btn.insta:hover { background: #dc2743; border-color: #dc2743; }
+    .footer-soc-btn.fb:hover    { background: #1877F2; border-color: #1877F2; }
+    .footer-soc-btn.yt:hover    { background: #FF0000; border-color: #FF0000; }
+    .footer-soc-btn.wa:hover    { background: #25D366; border-color: #25D366; }
+
+    .footer-col h5 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--muted2);
+      margin-bottom: 16px; font-weight: 700;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul a { color: var(--muted); font-size: 0.86rem; text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--accent); }
+
+    /* Footer bottom bar */
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { color: var(--muted); font-size: 0.8rem; }
+    .footer-bottom a { color: var(--accent); text-decoration: none; }
+    /* Made with love tag */
+    .footer-love {
+      display: flex; align-items: center; gap: 6px;
+      color: var(--muted); font-size: 0.8rem;
+    }
+    .heart {
+      color: #ff4d6d;
+      animation: heartbeat 1.4s ease-in-out infinite;
+      display: inline-block;
+    }
+    @keyframes heartbeat {
+      0%,100%{ transform: scale(1); }
+      14%    { transform: scale(1.25); }
+      28%    { transform: scale(1); }
+      42%    { transform: scale(1.15); }
+      56%    { transform: scale(1); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 44px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+    }
+    @media (max-width: 500px) {
+      .action-btns { grid-template-columns: 1fr; }
+      .social-row { gap: 8px; }
+      .social-btn { padding: 9px 14px; font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── FLOATING WHATSAPP BUTTON ── -->
+<a href="https://wa.me/919492205132?text=Hi , I’m interested in getting a professional website built. Can you share details?"
+   class="float-wa" target="_blank" title="Chat on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<style>
+.float-wa  {
+  position: fixed;
+  bottom: 100px;        /* sits above the mobile bottom nav */
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  text-decoration: none;
+  z-index: 998;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+  animation: waPulse 2s ease-in-out infinite;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.float-wa:hover {
+  transform: scale(1.12);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.7);
+}
+@keyframes waPulse {
+  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+  50%      { box-shadow: 0 4px 32px rgba(37,211,102,0.85); }
+}
+
+/* On desktop — position a bit lower since no bottom nav */
+@media (min-width: 961px) {
+  .float-wa { bottom: 28px; }
+}
+</style>
+
+  <div class="cursor-ball"  id="cursorBall"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">SV<span>.</span>WaveTech</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Work</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><button class="theme-toggle" id="themeToggle">☀️</button></li>
+      <li><a href="contact.html" class="nav-hire">Hire Me</a></li>
+    </ul>
+    <div class="mobile-controls">
+      <button class="theme-toggle" id="themeToggleMobile">☀️</button>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-close" id="mobileClose">✕</button>
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="services.html">Services</a><a href="portfolio.html">Work</a>
+    <a href="pricing.html">Pricing</a><a href="contact.html">Contact</a>
+    <a href="contact.html" style="color:var(--accent)">Hire Me →</a>
+  </div>
+
+  <!-- ── PAGE HERO ── -->
+  <div class="page-hero">
+    <div class="section-tag">Get In Touch</div>
+    <h1>Let's Work <span style="color:var(--accent)">Together</span></h1>
+    <p>Tell me about your project and I'll get back to you within a few hours.</p>
+  </div>
+
+  <!-- ── CONTACT SECTION ── -->
+  <section class="section section-alt">
+    <div class="contact-layout">
+
+      <!-- ════════════════════════════════
+           LEFT: Contact info + actions
+           ════════════════════════════════ -->
+      <div class="contact-info reveal">
+
+        <h3>we are available for<br>new projects right now.</h3>
+        <p>Based in Rajahmundry, AP. Reach me on WhatsApp for the fastest reply — usually within 1 hour.</p>
+
+        <!-- WhatsApp + Call buttons -->
+        <div class="action-btns">
+
+          <!-- WhatsApp Chat — opens wa.me link -->
+         <a href="https://wa.me/919492205132?text=Hi , I’m interested in getting a professional website built. Can you share details?"
+             class="btn-whatsapp" target="_blank">
+            <span class="btn-icon"><i class="fa-brands fa-whatsapp"></i></span>
+            Chat on WhatsApp
+          </a>
+
+          <!-- Direct Call button — tel: opens phone dialer -->
+          <a href="tel:+919492205132" class="btn-call">
+            <span class="btn-icon">📞</span>
+            Call Me Now
+          </a>
+
+        </div>
+
+        <!-- Contact detail cards -->
+        <div class="contact-items">
+          <a href="https://wa.me/919492205132?text=Hi , I’m interested in getting a professional website built. Can you share details?"
+           class="contact-item" target="_blank">
+            <span class="ci-icon">📱</span>
+            <div>
+              <div class="ci-label">WhatsApp / Phone</div>
+              <div class="ci-value">+91 94922-05132</div>
+            </div>
+          </a>
+          <a href="mailto:Sv.WaveTech@gmail.com" class="contact-item">
+            <span class="ci-icon">✉️</span>
+            <div>
+              <div class="ci-label">Email</div>
+              <div class="ci-value">Sv.WaveTech@gmail.com</div>
+            </div>
+          </a>
+          <div class="contact-item">
+            <span class="ci-icon">📍</span>
+            <div>
+              <div class="ci-label">Location</div>
+              <div class="ci-value">Rajahmundry, East Godavari, AP</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="social-section">
+          <div class="social-label">Follow Me</div>
+          <div class="social-row">
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/sv_wavetech/"
+               class="social-btn insta" target="_blank">
+              <span class="s-icon"><i class="fa-brands fa-instagram"></i></span> Instagram
+            </a>
+
+            <!-- Facebook — REPLACE YOUR_FACEBOOK_LINK with your real Facebook URL -->
+            <a href="YOUR_FACEBOOK_LINK"
+               class="social-btn fb" target="_blank">
+              <span class="s-icon"><i class="fa-brands fa-facebook"></i></span> Facebook
+            </a>
+
+            <!-- YouTube — REPLACE YOUR_YOUTUBE_LINK with your real YouTube URL -->
+            <a href="YOUR_YOUTUBE_LINK"
+               class="social-btn yt" target="_blank">
+              <span class="s-icon"><i class="fa-brands fa-youtube"></i></span> YouTube
+            </a>
+
+            <!-- WhatsApp — same number -->
+            <a href="https://wa.me/919492205132?text=Hi , I’m interested in getting a professional website built. Can you share details?"
+               class="social-btn wa" target="_blank">
+              <span class="s-icon"><i class="fa-brands fa-whatsapp"></i></span> WhatsApp
+            </a>
+
+          </div>
+        </div>
+
+        <!-- Availability indicator -->
+        <div class="availability-line">
+          <div class="avail-dot"></div>
+          <span>Currently available — taking new projects</span>
+        </div>
+
+      </div><!-- end contact-info -->
+
+      <!-- ════════════════════════════════
+           RIGHT: Contact form
+           ════════════════════════════════ -->
+      <div class="reveal delay-2">
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="cf-field">
+              <label class="cf-label">Your Name *</label>
+              <input class="cf-input" type="text" id="cfName" placeholder="Enter your name"/>
+            </div>
+            <div class="cf-field">
+              <label class="cf-label">WhatsApp / Phone *</label>
+              <input class="cf-input" type="tel" id="cfPhone" placeholder="+91 XXXXX XXXXX"/>
+            </div>
+          </div>
+          <div class="cf-field">
+            <label class="cf-label">Email (optional)</label>
+            <input class="cf-input" type="email" id="cfEmail" placeholder="your@email.com"/>
+          </div>
+          <div class="cf-field">
+            <label class="cf-label">Type of Website Needed</label>
+            <input class="cf-input" type="text" id="cfType" placeholder="e.g. Business website, E-Commerce store..."/>
+          </div>
+          <div class="cf-field">
+            <label class="cf-label">Tell Me About Your Business</label>
+            <textarea class="cf-input" id="cfMessage"
+              placeholder="What does your business do? What pages do you need? Any specific requirements?"></textarea>
+          </div>
+          <button class="cf-submit" onclick="handleContactForm()">Send Message →</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       REDESIGNED FOOTER
+       Social icons repeated here for easy access.
+       To update links: search "YOUR_FACEBOOK_LINK" etc.
+       ══════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-top">
+
+      <!-- Brand + social icons -->
+      <div>
+        <a href="index.html" class="nav-logo">SV<span>.</span>WaveTech</a>
+        <p class="footer-brand-desc">
+          Web developers from Rajahmundry building fast, professional websites
+          for businesses across India. Clean code, honest pricing, real results.
+        </p>
+        <!-- Footer social icon row -->
+        <div class="footer-social">
+          <a href="https://www.instagram.com/sv_wavetech/" class="footer-soc-btn insta" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="YOUR_FACEBOOK_LINK"                      class="footer-soc-btn fb"    target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="YOUR_YOUTUBE_LINK"                       class="footer-soc-btn yt"    target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://wa.me/919492205132"              class="footer-soc-btn wa"    target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- Services column -->
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html">Business Websites</a></li>
+          <li><a href="services.html">E-Commerce Stores</a></li>
+          <li><a href="services.html">Landing Pages</a></li>
+          <li><a href="services.html">Site Redesign</a></li>
+          <li><a href="services.html">SEO & Speed</a></li>
+          <li><a href="services.html">Maintenance</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick links column -->
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="portfolio.html">Our Work</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <p>© 2026 SV.WaveTech | Web Developers, Rajahmundry, AP</p>
+      <div class="footer-love">
+        Made with <span class="heart">♥</span> in Rajahmundry 🇮🇳
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"><div class="toast-dot"></div><span id="toastText"></span></div>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="mob-bottom-nav" id="mobBottomNav">
+    <ul>
+      <li><a href="index.html"><span class="bn-icon"><i class="fa-solid fa-house"></i></span>Home</a></li>
+      <li><a href="portfolio.html"><span class="bn-icon"><i class="fa-solid fa-briefcase"></i></span>Work</a></li>
+      <li><a href="services.html"><span class="bn-icon"><i class="fa-solid fa-bolt"></i></span>Services</a></li>
+      <li><a href="pricing.html"><span class="bn-icon"><i class="fa-solid fa-coins"></i></span>Pricing</a></li>
+      <li><a href="contact.html"><span class="bn-icon"><i class="fa-solid fa-phone"></i></span>Contact</a></li>
+    </ul>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Sync mobile theme toggle
+    // Theme toggle handled by initAllThemeToggles() in main.js — no extra script needed
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,409 @@
+/* ============================================================
+   STEVE.DEV — PORTFOLIO PAGE STYLES
+   Specific styles for portfolio.html only.
+   General styles are in css/style.css
+   ============================================================ */
+
+/* ── PORTFOLIO GRID ── */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 22px;
+  margin-top: 20px;
+}
+
+/* ── FILTER BUTTONS ── */
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted2);
+  padding: 8px 20px;
+  border-radius: 100px;
+  font-size: 0.83rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s ease;
+}
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #08080f;
+  font-weight: 600;
+}
+
+/* ── PROJECT CARD ── */
+.project-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.4);
+  border-color: var(--border2);
+}
+
+/* Thumbnail area */
+.card-thumb {
+  aspect-ratio: 16 / 9;
+  background: var(--bg4);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.project-card:hover .card-thumb img {
+  transform: scale(1.06);
+}
+
+/* Empty thumbnail placeholder */
+.thumb-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.3;
+}
+.thumb-placeholder .icon {
+  font-size: 2.8rem;
+}
+.thumb-placeholder p {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+/* Overlay on hover with action buttons */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 8, 15, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+.project-card:hover .card-overlay {
+  opacity: 1;
+}
+
+/* Overlay action button */
+.overlay-btn {
+  background: var(--accent);
+  color: #08080f;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+  transition: transform 0.15s;
+}
+.overlay-btn:hover {
+  transform: scale(1.05);
+}
+.overlay-btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #f0ede8;
+}
+
+/* Card body (text area) */
+.card-body {
+  padding: 22px;
+}
+.card-body h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+.card-body p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+/* Tags below card description */
+.card-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.card-tag {
+  background: rgba(232, 255, 71, 0.07);
+  border: 1px solid rgba(232, 255, 71, 0.14);
+  color: var(--accent);
+  padding: 3px 12px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.card-tag.blue {
+  background: rgba(71, 184, 255, 0.07);
+  border-color: rgba(71, 184, 255, 0.14);
+  color: var(--accent2);
+}
+
+/* ── ADD NEW PROJECT CARD ── */
+.add-project-card {
+  background: transparent;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 50px 24px;
+  cursor: pointer;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  min-height: 300px;
+}
+.add-project-card:hover {
+  border-color: rgba(232, 255, 71, 0.35);
+  background: rgba(232, 255, 71, 0.02);
+}
+.add-icon-circle {
+  width: 58px;
+  height: 58px;
+  background: rgba(232, 255, 71, 0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--accent);
+  transition: transform 0.3s ease;
+}
+.add-project-card:hover .add-icon-circle {
+  transform: scale(1.1) rotate(90deg);
+}
+.add-label strong {
+  display: block;
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 4px;
+  text-align: center;
+}
+.add-label p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ── ADD PROJECT MODAL ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open {
+  display: flex;
+}
+.modal-box {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 560px;
+  position: relative;
+  animation: modalIn 0.3s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-box h2 {
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+}
+.modal-sub {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin-bottom: 28px;
+}
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--muted2);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.modal-close:hover {
+  background: var(--bg4);
+}
+
+/* Modal form fields */
+.form-field {
+  margin-bottom: 16px;
+}
+.form-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.form-input {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.93rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.form-input:focus {
+  border-color: rgba(232, 255, 71, 0.4);
+}
+.form-input::placeholder {
+  color: var(--muted);
+}
+
+/* File upload zone */
+.upload-zone {
+  border: 1.5px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 26px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.upload-zone:hover {
+  border-color: rgba(232, 255, 71, 0.3);
+  background: rgba(232, 255, 71, 0.02);
+}
+.upload-zone .upload-icon {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+.upload-zone p {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+/* Modal submit button */
+.modal-submit {
+  width: 100%;
+  background: var(--accent);
+  color: #08080f;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.93rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 8px;
+}
+.modal-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232, 255, 71, 0.3);
+}
+
+/* ── LIGHTBOX (full screen image view) ── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 3000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lightbox.open {
+  display: flex;
+}
+.lightbox img {
+  max-width: 90vw;
+  max-height: 88vh;
+  border-radius: 12px;
+  object-fit: contain;
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+  .filter-bar {
+    gap: 8px;
+  }
+  .modal-box {
+    padding: 28px 20px;
+  }
+}
