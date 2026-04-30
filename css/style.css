@@ -393,6 +393,7 @@ img {
 
 /* ── 10. FOOTER ── */
 .footer {
+ display: none;
   background: var(--bg);
   border-top: 1px solid var(--border);
   padding: 60px 6% 36px;
