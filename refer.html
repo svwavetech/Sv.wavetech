@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+  <title>Refer & Earn — SV.WaveTech</title>
+  <meta name="description" content="Refer businesses to SV.WaveTech and earn rewards when they start a website project."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    .refer-hero {
+      min-height: 78vh;
+      padding: 150px 6% 90px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 76% 28%, rgba(232,255,71,0.10), transparent 34%),
+        radial-gradient(circle at 16% 78%, rgba(71,184,255,0.08), transparent 30%);
+    }
+    .refer-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 78px 78px;
+      pointer-events: none;
+    }
+    .refer-copy,
+    .reward-panel {
+      position: relative;
+      z-index: 2;
+    }
+    .refer-copy h1 {
+      font-size: clamp(2.6rem, 7vw, 6.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      margin: 16px 0 24px;
+    }
+    .refer-copy p {
+      max-width: 560px;
+      font-size: 1.05rem;
+      color: var(--muted2);
+    }
+    .refer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+    .reward-panel {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: 18px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+    .reward-kicker {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .reward-value {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .reward-panel p {
+      color: var(--muted2);
+      font-size: 0.95rem;
+    }
+    .reward-list {
+      display: grid;
+      gap: 10px;
+      margin: 26px 0 0;
+      list-style: none;
+    }
+    .reward-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: var(--muted2);
+      font-size: 0.9rem;
+    }
+    .reward-list i {
+      color: var(--accent);
+      width: 18px;
+      text-align: center;
+    }
+    .refer-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 48px;
+    }
+    .refer-step,
+    .terms-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 26px;
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .refer-step:hover,
+    .terms-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(232,255,71,0.28);
+      background: var(--bg3);
+    }
+    .step-icon {
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(232,255,71,0.10);
+      color: var(--accent);
+      margin-bottom: 18px;
+      font-size: 1.1rem;
+    }
+    .refer-step h3,
+    .terms-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 9px;
+      color: var(--text);
+    }
+    .refer-step p,
+    .terms-card p {
+      font-size: 0.9rem;
+      color: var(--muted2);
+    }
+    .reward-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 44px;
+    }
+    .reward-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .reward-card .amount {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      line-height: 1;
+      color: var(--accent);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .reward-card h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .reward-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .refer-form-wrap {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 48px;
+      align-items: start;
+      margin-top: 48px;
+    }
+    .refer-form {
+      display: grid;
+      gap: 13px;
+    }
+    .refer-note {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .refer-note ul {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .refer-note li {
+      display: flex;
+      gap: 10px;
+      color: var(--muted2);
+      font-size: 0.92rem;
+    }
+    .refer-note i {
+      color: var(--accent);
+      margin-top: 4px;
+    }
+    .ref-input {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.94rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .ref-input:focus {
+      border-color: rgba(232,255,71,0.45);
+      box-shadow: 0 0 0 3px rgba(232,255,71,0.08);
+    }
+    textarea.ref-input {
+      min-height: 118px;
+      resize: vertical;
+    }
+    .float-wa {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      text-decoration: none;
+      z-index: 998;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+      animation: waPulse 2s ease-in-out infinite;
+      transition: transform 0.2s, box-shadow 0.2s;
+      color: #fff;
+    }
+    .float-wa:hover {
+      transform: scale(1.12);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.7);
+    }
+    @keyframes waPulse {
+      0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+      50% { box-shadow: 0 4px 32px rgba(37,211,102,0.85); }
+    }
+    .footer {
+      display: block;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 56px 6% 28px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 52px;
+      margin-bottom: 40px;
+    }
+    .footer-brand-desc {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.7;
+      max-width: 280px;
+      margin-top: 12px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .footer-soc-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .footer-soc-btn:hover { transform: translateY(-3px); }
+    .footer-soc-btn.insta:hover { background: #dc2743; border-color: #dc2743; }
+    .footer-soc-btn.fb:hover { background: #1877F2; border-color: #1877F2; }
+    .footer-soc-btn.yt:hover { background: #FF0000; border-color: #FF0000; }
+    .footer-soc-btn.wa:hover { background: #25D366; border-color: #25D366; }
+    .footer-love {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    .heart {
+      color: #ff4d6d;
+      animation: heartbeat 1.4s ease-in-out infinite;
+      display: inline-block;
+    }
+    @keyframes heartbeat {
+      0%,100% { transform: scale(1); }
+      14% { transform: scale(1.25); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.15); }
+      56% { transform: scale(1); }
+    }
+    @media (min-width: 961px) {
+      .float-wa { bottom: 28px; }
+    }
+    @media (max-width: 960px) {
+      .refer-hero,
+      .refer-form-wrap {
+        grid-template-columns: 1fr;
+      }
+      .refer-hero {
+        padding-top: 126px;
+      }
+      .refer-steps,
+      .reward-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+    @media (max-width: 520px) {
+      .refer-actions .btn-primary,
+      .refer-actions .btn-ghost {
+        width: 100%;
+        justify-content: center;
+      }
+      .reward-panel {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="https://wa.me/919492205132?text=Hi%20SV.WaveTech%2C%20I%20want%20to%20refer%20someone%20for%20a%20website%20project."
+     class="float-wa" target="_blank" title="Refer on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <div class="cursor-ball" id="cursorBall"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">SV<span>.</span>WaveTech</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Work</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="refer.html" class="active">Refer</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><button class="theme-toggle" id="themeToggle">☀️</button></li>
+      <li><a href="contact.html" class="nav-hire">Hire Me</a></li>
+    </ul>
+    <div class="mobile-controls">
+      <button class="theme-toggle" id="themeToggleMobile" title="Toggle theme">☀️</button>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-close" id="mobileClose">✕</button>
+    <a href="index.html">Home</a><a href="about.html">About</a>
+    <a href="services.html">Services</a><a href="portfolio.html">Work</a>
+    <a href="pricing.html">Pricing</a><a href="refer.html">Refer & Earn</a><a href="contact.html">Contact</a>
+    <a href="contact.html" style="color:var(--accent)">Hire Me →</a>
+  </div>
+
+  <section class="refer-hero">
+    <div class="refer-copy reveal">
+      <div class="section-tag">Refer & Earn Program</div>
+      <h1>Bring a client.<br><span style="color:var(--accent)">Earn a reward.</span></h1>
+      <p>Know a business owner who needs a website? Refer them to SV.WaveTech. When they start a project with us, you receive a referral reward.</p>
+      <div class="refer-actions">
+        <a href="#refer-form" class="btn-primary">Submit a Referral →</a>
+        <a href="https://wa.me/919492205132?text=Hi%20SV.WaveTech%2C%20I%20want%20to%20refer%20someone%20for%20a%20website%20project." class="btn-ghost" target="_blank">Refer on WhatsApp ↗</a>
+      </div>
+    </div>
+    <div class="reward-panel reveal delay-2">
+      <div class="reward-kicker">Referral Reward</div>
+      <div class="reward-value">Up to ₹2,000</div>
+      <p>Reward depends on the project package and is paid after the referred client pays their advance.</p>
+      <ul class="reward-list">
+        <li><i class="fa-solid fa-check"></i> No selling needed from your side</li>
+        <li><i class="fa-solid fa-check"></i> We handle the call, quote, and project</li>
+        <li><i class="fa-solid fa-check"></i> You get rewarded for real successful leads</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="reveal" style="text-align:center;max-width:620px;margin:0 auto">
+      <div class="section-tag">How It Works</div>
+      <h2 class="section-title">Three Simple Steps</h2>
+      <p class="section-sub">Send us a genuine lead, we speak to them, and you get paid when the website project starts.</p>
+    </div>
+    <div class="refer-steps">
+      <div class="refer-step reveal stagger-1">
+        <div class="step-icon"><i class="fa-solid fa-user-plus"></i></div>
+        <h3>1. Share the Lead</h3>
+        <p>Send the business name, contact number, and what type of website they need.</p>
+      </div>
+      <div class="refer-step reveal stagger-2">
+        <div class="step-icon"><i class="fa-solid fa-comments"></i></div>
+        <h3>2. We Talk to Them</h3>
+        <p>SV.WaveTech explains the package, pricing, timeline, and answers their questions.</p>
+      </div>
+      <div class="refer-step reveal stagger-3">
+        <div class="step-icon"><i class="fa-solid fa-gift"></i></div>
+        <h3>3. You Earn</h3>
+        <p>Once the referred client confirms and pays the advance, your reward is released.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="reveal">
+      <div class="section-tag">Reward Examples</div>
+      <h2 class="section-title">What You Can Earn</h2>
+      <p class="section-sub">These are sample rewards. Final reward is confirmed based on the package selected by the client.</p>
+    </div>
+    <div class="reward-grid">
+      <div class="reward-card reveal stagger-1">
+        <div class="amount">₹500</div>
+        <h3>Landing Page Referral</h3>
+        <p>For simple one-page website or campaign page projects.</p>
+      </div>
+      <div class="reward-card reveal stagger-2">
+        <div class="amount">₹1,000</div>
+        <h3>Business Website Referral</h3>
+        <p>For standard business websites, service websites, and portfolio sites.</p>
+      </div>
+      <div class="reward-card reveal stagger-3">
+        <div class="amount">₹2,000</div>
+        <h3>E-Commerce Referral</h3>
+        <p>For online stores, product catalogues, and bigger custom website projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="refer-form">
+    <div class="refer-form-wrap">
+      <div class="refer-note reveal">
+        <div class="section-tag">Good Referrals</div>
+        <h2 class="section-title" style="font-size:clamp(1.8rem,4vw,2.7rem)">Who Can You Refer?</h2>
+        <p class="section-sub" style="margin:0">Any business owner, freelancer, shop, clinic, coaching center, restaurant, or brand that needs a website.</p>
+        <ul>
+          <li><i class="fa-solid fa-circle-check"></i><span>They should be genuinely interested in a website.</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span>Share correct contact details so we can reach them.</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span>Duplicate or fake leads are not eligible for rewards.</span></li>
+        </ul>
+      </div>
+      <div class="reveal delay-2">
+        <div class="refer-form">
+          <input class="ref-input" type="text" id="refName" placeholder="Your name"/>
+          <input class="ref-input" type="tel" id="refPhone" placeholder="Your WhatsApp number"/>
+          <input class="ref-input" type="text" id="leadName" placeholder="Business / person you are referring"/>
+          <input class="ref-input" type="tel" id="leadPhone" placeholder="Their phone / WhatsApp number"/>
+          <input class="ref-input" type="text" id="leadType" placeholder="Website type needed, e.g. business website"/>
+          <textarea class="ref-input" id="leadMessage" placeholder="Any extra details about the business or project"></textarea>
+          <button class="btn-primary" style="justify-content:center" onclick="submitReferral()">Send Referral on WhatsApp →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="reveal" style="text-align:center;max-width:760px;margin:0 auto">
+      <div class="section-tag">Terms</div>
+      <h2 class="section-title">Simple & Fair Rules</h2>
+    </div>
+    <div class="refer-steps">
+      <div class="terms-card reveal stagger-1">
+        <h3>Reward Timing</h3>
+        <p>Rewards are paid only after the referred client confirms the project and pays the advance amount.</p>
+      </div>
+      <div class="terms-card reveal stagger-2">
+        <h3>First Referrer Wins</h3>
+        <p>If multiple people refer the same client, the reward goes to the person who submitted the lead first.</p>
+      </div>
+      <div class="terms-card reveal stagger-3">
+        <h3>Valid Projects Only</h3>
+        <p>Rewards apply to paid website projects. Free consultations, cancelled projects, and fake leads are not eligible.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="reveal" style="background:var(--accent);padding:76px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:28px">
+    <h2 style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:#08080f;letter-spacing:-.03em;line-height:1.15;max-width:560px">Know someone who needs a website? Send the lead today.</h2>
+    <a href="#refer-form" style="background:#08080f;color:var(--accent);padding:18px 38px;border-radius:6px;font-weight:700;font-size:.9rem;text-decoration:none;text-transform:uppercase;letter-spacing:.06em;display:inline-block;white-space:nowrap">Refer Now →</a>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="nav-logo">SV<span>.</span>WaveTech</a>
+        <p class="footer-brand-desc">Web developers from Rajahmundry building fast, professional websites for businesses across India. Clean code, honest pricing, real results.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/sv_wavetech/" class="footer-soc-btn insta" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="YOUR_FACEBOOK_LINK" class="footer-soc-btn fb" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="YOUR_YOUTUBE_LINK" class="footer-soc-btn yt" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://wa.me/919492205132" class="footer-soc-btn wa" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html">Business Websites</a></li>
+          <li><a href="services.html">E-Commerce Stores</a></li>
+          <li><a href="services.html">Landing Pages</a></li>
+          <li><a href="services.html">Site Redesign</a></li>
+          <li><a href="services.html">SEO & Speed</a></li>
+          <li><a href="services.html">Maintenance</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="portfolio.html">Our Work</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="refer.html">Refer & Earn</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 SV.WaveTech | Web Developers, Rajahmundry, AP</p>
+      <div class="footer-love">Made with <span class="heart">♥</span> in Rajahmundry 🇮🇳</div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"><div class="toast-dot"></div><span id="toastText"></span></div>
+
+  <nav class="mob-bottom-nav" id="mobBottomNav">
+    <ul>
+      <li><a href="index.html"><span class="bn-icon"><i class="fa-solid fa-house"></i></span>Home</a></li>
+      <li><a href="portfolio.html"><span class="bn-icon"><i class="fa-solid fa-briefcase"></i></span>Work</a></li>
+      <li><a href="services.html"><span class="bn-icon"><i class="fa-solid fa-bolt"></i></span>Services</a></li>
+      <li><a href="pricing.html"><span class="bn-icon"><i class="fa-solid fa-coins"></i></span>Pricing</a></li>
+      <li><a href="contact.html"><span class="bn-icon"><i class="fa-solid fa-phone"></i></span>Contact</a></li>
+    </ul>
+  </nav>
+
+  <script src="js/main.js"></script>
+  <script>
+    function submitReferral() {
+      const get = (id) => document.getElementById(id).value.trim();
+      const refName = get('refName');
+      const refPhone = get('refPhone');
+      const leadName = get('leadName');
+      const leadPhone = get('leadPhone');
+      const leadType = get('leadType');
+      const leadMessage = get('leadMessage');
+
+      if (!refName || !refPhone || !leadName || !leadPhone) {
+        if (typeof showToast === 'function') {
+          showToast('Please fill your details and the lead contact details.');
+        } else {
+          alert('Please fill your details and the lead contact details.');
+        }
+        return;
+      }
+
+      const message =
+        `Hi SV.WaveTech, I want to refer a website lead.\n\n` +
+        `My Name: ${refName}\n` +
+        `My WhatsApp: ${refPhone}\n\n` +
+        `Lead / Business: ${leadName}\n` +
+        `Lead Phone: ${leadPhone}\n` +
+        `Website Type: ${leadType || 'Not sure'}\n` +
+        `Details: ${leadMessage || 'No extra details'}`;
+
+      window.open(`https://wa.me/919492205132?text=${encodeURIComponent(message)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
