@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  ============================================================
+  PAGE: About (about.html)
+  DESCRIPTION: Personal bio, skills, tech stack, and background.
+  STYLES: css/style.css
+  SCRIPTS: js/main.js
+  ============================================================
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About SV.WaveTech — Professional Web & Digital Agency</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* ── ABOUT LAYOUT ── */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 72px;
+    }
+
+    /* Left column: bio text */
+    .about-left .big-quote {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+      color: var(--text);
+    }
+    .about-left .big-quote em {
+      color: var(--accent);
+      font-style: normal;
+    }
+    .about-left p {
+      margin-bottom: 16px;
+    }
+
+    /* Right column: stat cards (sticky so they stay visible while scrolling) */
+    .about-right {
+      position: sticky;
+      top: 110px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .stat-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      transition: border-color 0.3s;
+    }
+    .stat-card:hover {
+      border-color: var(--border2);
+    }
+    .stat-card .num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .stat-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── TECH STACK GRID ── */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+      margin-top: 52px;
+    }
+    .stack-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 18px;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s, background 0.3s;
+    }
+    .stack-card:hover {
+      border-color: rgba(232,255,71,0.3);
+      transform: translateY(-4px);
+      background: var(--bg4);
+    }
+    .stack-card .s-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .stack-card .s-name { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .stack-card .s-type { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; }
+
+    /* ── SKILLS PILLS ── */
+    .skills-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .skill-pill {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+   
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 44px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+    }
+    @media (max-width: 500px) {
+      .action-btns { grid-template-columns: 1fr; }
+      .social-row { gap: 8px; }
+      .social-btn { padding: 9px 14px; font-size: 0.78rem; }
+    }
+
+
+    @media (max-width: 900px) {
+      .about-layout { grid-template-columns: 1fr; gap: 48px; }
+      .about-right  { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+   <!-- ── FLOATING WHATSAPP BUTTON ── -->
+<a href="https://wa.me/919492205132?text=Hi , I’m interested in getting a professional website built. Can you share details?"
+   class="float-wa" target="_blank" title="Chat on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<style>
+.float-wa  {
+  position: fixed;
+  bottom: 100px;        /* sits above the mobile bottom nav */
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  text-decoration: none;
+  z-index: 998;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+  animation: waPulse 2s ease-in-out infinite;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.float-wa:hover {
+  transform: scale(1.12);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.7);
+}
+@keyframes waPulse {
+  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+  50%      { box-shadow: 0 4px 32px rgba(37,211,102,0.85); }
+}
+
+/* On desktop — position a bit lower since no bottom nav */
+@media (min-width: 961px) {
+  .float-wa { bottom: 28px; }
+}
+</style>
+
+  <!-- Custom cursor elements -->
+  <div class="cursor-ball" id="cursorBall"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">SV<span>.</span>Wave Tech</a>
+    <ul class="nav-links">
+      <li><a href="index.html" >Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Work</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="refer.html">Refer & Earn</a></li>
+      <li><button class="theme-toggle" id="themeToggle">☀️</button></li>
+      <li><a href="contact.html" class="nav-hire">Start Project</a></li>
+    </ul>
+    <div class="mobile-controls">
+      <button class="theme-toggle" id="themeToggleMobile">☀️</button>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-close" id="mobileClose">✕</button>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Work</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="team.html">Team</a>
+    <a href="contact.html">Contact</a>
+    <a href="refer.html">Refer & Earn</a>
+    <a href="contact.html" style="color:var(--accent)">Start Project →</a>
+  </div>
+
+
+  <!-- ── PAGE HERO ── -->
+  <div class="page-hero">
+    <div class="section-tag">About Us</div>
+    <h1>Designers.<br><span style="color:var(--accent)">Builders.</span><br>Problem Solvers.</h1>
+    <p>Based in Rajahmundry, East Godavari, Andhra Pradesh — turning ideas into websites that work.</p>
+  </div>
+
+
+  <!-- ── ABOUT BIO SECTION ── -->
+  <section class="section section-alt">
+    <div class="about-layout">
+
+      <!-- Left: Bio text -->
+      <div class="about-left reveal-left">
+        <div class="big-quote">
+          We build websites that actually <em>work</em> for your business.
+        </div>
+
+        <p>
+          Hey, I'm Steve — a web developer and Our Team from Rajahmundry, Andhra Pradesh.
+          we design and develop fast, beautiful, fully custom websites that help
+          local and online businesses grow.
+        </p>
+        <p>
+          We've delivered websites across many industries — from coaching institutes
+          and clinics to retail shops and service businesses. Every project gets the
+          same level of attention: clean code, thoughtful design, and a site that
+          loads in under 2 seconds.
+        </p>
+        <p>
+          We understand what small businesses in AP actually need — not an overpriced
+          agency quote, but a professional website that gets real results. We work
+          directly with you, with zero middlemen, and deliver sites that make your
+          business look world-class online.
+        </p>
+        <p>
+          Our approach is simple: understand your business, build exactly what you need,
+          deliver fast, and stay available whenever you need changes or updates.
+        </p>
+
+        <!-- Skill pills -->
+        <div class="skills-pills">
+          <span class="skill-pill">HTML5 / CSS3</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">MERN Stack</span>
+          <span class="skill-pill">Responsive Design</span>
+          <span class="skill-pill">E-Commerce</span>
+          <span class="skill-pill">SEO Basics</span>
+          <span class="skill-pill">Performance Optimisation</span>
+          <span class="skill-pill">UI / UX Design</span>
+          <span class="skill-pill">Google Analytics</span>
+          <span class="skill-pill">Contact Forms</span>
+          <span class="skill-pill">WordPress Development</span>
+          <span class="skill-pill">Elementor Builder</span>
+          <span class="skill-pill">WooCommerce Setup</span>
+          <span class="skill-pill">Website Redesign</span>
+          <span class="skill-pill">Speed Optimization</span>
+          <span class="skill-pill">On-Page SEO</span>
+          <span class="skill-pill">Technical SEO</span>
+          <span class="skill-pill">API Integration</span>
+          <span class="skill-pill">Payment Gateway Integration</span>
+          <span class="skill-pill">User Authentication</span>
+          <span class="skill-pill">Database Management</span>
+          <span class="skill-pill">REST API Development</span>
+          <span class="skill-pill">Git & Version Control</span>
+          <span class="skill-pill">Hosting & Deployment</span>
+          <span class="skill-pill">Domain & DNS Setup</span>
+          <span class="skill-pill">Email Configuration</span>
+          <span class="skill-pill">Security & SSL</span>
+          <span class="skill-pill">Website Maintenance</span>
+          <span class="skill-pill">Bug Fixing</span>
+          <span class="skill-pill">Cross-Browser Compatibility</span>
+          <span class="skill-pill">Mobile Optimization</span>
+          <span class="skill-pill">Web Performance Audits</span>
+          <span class="skill-pill">Content Management Systems</span>
+          <span class="skill-pill">Landing Page Design</span>
+        </div>
+          
+        <div style="margin-top:36px; display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="portfolio.html" class="btn-primary">See Our Work →</a>
+          <a href="contact.html"   class="btn-ghost">Get In Touch</a>
+        </div>
+      </div>
+
+      <!-- Right: Stats cards (sticky) -->
+      <div class="about-right reveal delay-2">
+        <div class="stat-card">
+          <div class="num">20+</div>
+          <h4>Websites Delivered</h4>
+          <p>Built and launched websites for businesses across Rajahmundry and East Godavari district.</p>
+        </div>
+        <div class="stat-card">
+          <div class="num">48h</div>
+          <h4>Average Turnaround</h4>
+          <p>Most standard websites are ready to go live within 48 to 72 hours of project kick-off.</p>
+        </div>
+        <div class="stat-card">
+          <div class="num">100%</div>
+          <h4>Client Satisfaction</h4>
+          <p>Every client gets exactly what they asked for — no surprises, no hidden charges.</p>
+        </div>
+        <div class="stat-card">
+          <div class="num">₹3,999</div>
+          <h4>Transparent Pricing</h4>
+          <p>Honest, flat-rate pricing. You know the cost before work begins — always.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── TECH STACK SECTION ── -->
+  <section class="section">
+    <div class="reveal">
+      <div class="section-tag">Tech Stack</div>
+      <h2 class="section-title">Tools of the Trade</h2>
+      <p class="section-sub">We use modern, industry-proven technologies to build websites that are fast, secure, and easy to manage.</p>
+    </div>
+
+    <div class="stack-grid reveal delay-2">
+      <div class="stack-card"><div class="s-icon">🌐</div><div class="s-name">HTML5</div><div class="s-type">Markup</div></div>
+      <div class="stack-card"><div class="s-icon">🎨</div><div class="s-name">CSS3</div><div class="s-type">Styling</div></div>
+      <div class="stack-card"><div class="s-icon">⚡</div><div class="s-name">JavaScript</div><div class="s-type">Interaction</div></div>
+      <div class="stack-card"><div class="s-icon">⚛️</div><div class="s-name">React</div><div class="s-type">Frontend</div></div>
+      <div class="stack-card"><div class="s-icon">🎯</div><div class="s-name">Tailwind CSS</div><div class="s-type">Utility CSS</div></div>
+      <div class="stack-card"><div class="s-icon">🟢</div><div class="s-name">Node.js</div><div class="s-type">Backend</div></div>
+      <div class="stack-card"><div class="s-icon">🐍</div><div class="s-name">Python</div><div class="s-type">Backend</div></div>
+      <div class="stack-card"><div class="s-icon">🍃</div><div class="s-name">MongoDB</div><div class="s-type">NoSQL DB</div></div>
+      <div class="stack-card"><div class="s-icon">📦</div><div class="s-name">MySQL</div><div class="s-type">Relational DB</div></div>
+      <div class="stack-card"><div class="s-icon">🐙</div><div class="s-name">Git</div><div class="s-type">Version Control</div></div>
+      <div class="stack-card"><div class="s-icon">📱</div><div class="s-name">Responsive</div><div class="s-type">Mobile-First</div></div>
+      <div class="stack-card"><div class="s-icon">🛒</div><div class="s-name">E-Commerce</div><div class="s-type">Online Store</div></div>
+      <div class="stack-card"><div class="s-icon">🔍</div><div class="s-name">SEO</div><div class="s-type">Search Rank</div></div>
+      <div class="stack-card"><div class="s-icon">🚀</div><div class="s-name">Performance</div><div class="s-type">Speed Optimised</div></div>
+      <div class="stack-card"><div class="s-icon">🔒</div><div class="s-name">Security</div><div class="s-type">SSL & Backups</div></div>
+      <div class="stack-card"><div class="s-icon">📊</div><div class="s-name">Analytics</div><div class="s-type">Google Insights</div></div>
+      <div class="stack-card"><div class="s-icon">✉️</div><div class="s-name">Contact Forms</div><div class="s-type">Lead Capture</div></div>
+      <div class="stack-card"><div class="s-icon">🗺️</div><div class="s-name">Google Maps</div><div class="s-type">Local SEO</div></div>
+      <div class="stack-card"><div class="s-icon">☁️</div><div class="s-name">Cloud Hosting</div><div class="s-type">99.9% Uptime</div></div>
+      <div class="stack-card"><div class="s-icon">🛍️</div><div class="s-name">WooCommerce</div><div class="s-type">E-Commerce CMS</div></div>
+      <div class="stack-card"><div class="s-icon">📝</div><div class="s-name">VS Code</div><div class="s-type">Development</div></div>
+      <div class="stack-card"><div class="s-icon">🔧</div><div class="s-name">Webpack</div><div class="s-type">Module Bundler</div></div>
+      <div class="stack-card"><div class="s-icon">📚</div><div class="s-name">REST API</div><div class="s-type">API Design</div></div>
+      <div class="stack-card"><div class="s-icon">🧩</div><div class="s-name">WordPress</div><div class="s-type">CMS</div></div>
+      <div class="stack-card"><div class="s-icon">🛠️</div><div class="s-name">Elementor</div><div class="s-type">Page Builder</div></div>
+      <div class="stack-card"><div class="s-icon">🎨</div><div class="s-name">Figma</div><div class="s-type">UI Design</div></div>
+      <div class="stack-card"><div class="s-icon">🖌️</div><div class="s-name">Canva</div><div class="s-type">Graphics</div></div>
+      <div class="stack-card"><div class="s-icon">⚙️</div><div class="s-name">cPanel</div><div class="s-type">Hosting Panel</div></div>
+      <div class="stack-card"><div class="s-icon">🌍</div><div class="s-name">DNS Management</div><div class="s-type">Domain Setup</div></div>
+      <div class="stack-card"><div class="s-icon">📡</div><div class="s-name">API Integration</div><div class="s-type">3rd Party</div></div>
+      <div class="stack-card"><div class="s-icon">📧</div><div class="s-name">Email Setup</div><div class="s-type">Business Mail</div></div>
+      <div class="stack-card"><div class="s-icon">🔐</div><div class="s-name">Authentication</div><div class="s-type">Login Systems</div></div>
+      <div class="stack-card"><div class="s-icon">💳</div><div class="s-name">Payment Gateway</div><div class="s-type">Online Payments</div></div>
+      <div class="stack-card"><div class="s-icon">📂</div><div class="s-name">File Uploads</div><div class="s-type">User Data</div></div>
+      <div class="stack-card"><div class="s-icon">📈</div><div class="s-name">Google Analytics</div><div class="s-type">Tracking</div></div>
+      <div class="stack-card"><div class="s-icon">🔥</div><div class="s-name">Firebase</div><div class="s-type">Backend as a Service</div></div>
+      <div class="stack-card"><div class="s-icon">🧠</div><div class="s-name">AI Integration</div><div class="s-type">Smart Features</div></div>
+      <div class="stack-card"><div class="s-icon">📦</div><div class="s-name">NPM</div><div class="s-type">Package Manager</div></div>
+      <div class="stack-card"><div class="s-icon">⚡</div><div class="s-name">Vite</div><div class="s-type">Build Tool</div></div>
+      <div class="stack-card"><div class="s-icon">🧪</div><div class="s-name">Testing</div><div class="s-type">Quality Check</div></div>
+      <div class="stack-card"><div class="s-icon">📲</div><div class="s-name">PWA</div><div class="s-type">Web Apps</div></div>
+      <div class="stack-card"><div class="s-icon">🌐</div><div class="s-name">Multilingual</div><div class="s-type">i18n</div></div>
+    </div>
+  </section>
+  <section class="refer-cta-section reveal" aria-labelledby="referCtaTitle">
+    <div class="refer-cta-inner">
+      <div>
+        <div class="refer-cta-eyebrow"><i class="fa-solid fa-hand-holding-dollar"></i> Refer & Earn</div>
+        <h2 class="refer-cta-title" id="referCtaTitle">Know a business that needs a website?</h2>
+        <p class="refer-cta-text">Send one genuine lead to SV.WaveTech. We handle the call, quote, and project. You earn a reward when the client starts.</p>
+      </div>
+      <div class="refer-cta-card">
+        <div class="refer-cta-reward">
+          <div class="refer-cta-amount">₹2,000</div>
+          <div class="refer-cta-label">Possible reward<br/>per referral</div>
+        </div>
+        <ul class="refer-cta-points">
+          <li><i class="fa-solid fa-check"></i> No selling needed from your side</li>
+          <li><i class="fa-solid fa-check"></i> Fast WhatsApp referral option</li>
+          <li><i class="fa-solid fa-check"></i> Fair reward after project confirmation</li>
+        </ul>
+        <div class="refer-cta-actions">
+          <a href="refer.html" class="refer-cta-btn primary">Refer Now <i class="fa-solid fa-arrow-right"></i></a>
+          <button class="refer-cta-btn ghost" type="button" onclick="startReferralWhatsApp()"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   
+
+  <div class="toast" id="toast"><div class="toast-dot"></div><span id="toastText"></span></div>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="mob-bottom-nav" id="mobBottomNav">
+    <ul>
+      <li><a href="index.html"><span class="bn-icon"><i class="fa-solid fa-house"></i></span>Home</a></li>
+      <li><a href="portfolio.html"><span class="bn-icon"><i class="fa-solid fa-briefcase"></i></span>Work</a></li>
+      <li><a href="services.html"><span class="bn-icon"><i class="fa-solid fa-bolt"></i></span>Services</a></li>
+      <li><a href="pricing.html"><span class="bn-icon"><i class="fa-solid fa-coins"></i></span>Pricing</a></li>
+      <li><a href="refer.html"><span class="bn-icon"><i class="fa-solid fa-hand-holding-dollar"></i></span>Earn</a></li>
+      <li><a href="contact.html"><span class="bn-icon"><i class="fa-solid fa-phone"></i></span>Contact</a></li>
+    </ul>
+  </nav>
+
+
+  <script src="js/main.js"></script>
+
+  <script>
+    // Theme toggle handled by initAllThemeToggles() in main.js — no extra script needed
+  </script>
+
+</html>

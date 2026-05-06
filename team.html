@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Team — WaveTech Agency | Professional Web & Digital Services</title>
+  <meta name="description" content="Meet the WaveTech Agency team. Expert developers, designers, and digital strategists dedicated to your success."/>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    /* ── TEAM GRID ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 60px;
+    }
+
+    /* ── TEAM MEMBER CARD ── */
+    .team-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .team-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 16px 48px rgba(232,255,71,0.15);
+    }
+
+    /* Team member image */
+    .team-photo {
+      width: 100%;
+      height: 280px;
+      background: var(--bg4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .team-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(232,255,71,0.1), transparent);
+      pointer-events: none;
+    }
+
+    /* Team member info */
+    .team-info {
+      padding: 24px;
+    }
+    .team-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .team-role {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .team-bio {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--muted2);
+      margin-bottom: 16px;
+    }
+
+    /* Team social links */
+    .team-socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .team-social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg4);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted2);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .team-social-btn:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      background: rgba(232,255,71,0.1);
+      color: var(--accent);
+    }
+
+    /* Team specialties */
+    .team-specialties {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .specialty-badge {
+      background: rgba(232,255,71,0.08);
+      border: 1px solid rgba(232,255,71,0.2);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+      }
+      .team-photo { height: 240px; font-size: 3rem; }
+    }
+    @media (max-width: 500px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/919492205132?text=Hi , I'm interested in getting a professional website built. Can you share details?"
+     class="float-wa" target="_blank" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <div class="cursor-ball" id="cursorBall"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+ <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">SV<span>.</span>Wave Tech</a>
+    <ul class="nav-links">
+      <li><a href="index.html"  >Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Work</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="team.html" class="active">Team</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="refer.html">Refer & Earn</a></li>
+      <li><button class="theme-toggle" id="themeToggle">☀️</button></li>
+      <li><a href="contact.html" class="nav-hire">Start Project</a></li>
+    </ul>
+    <div class="mobile-controls">
+      <button class="theme-toggle" id="themeToggleMobile">☀️</button>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-close" id="mobileClose">✕</button>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Work</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="about.html">About</a>
+    <a href="team.html">Team</a>
+    <a href="contact.html">Contact</a>
+    <a href="refer.html">Refer & Earn</a>
+    <a href="contact.html" style="color:var(--accent)">Start Project →</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="section-tag">Our People</div>
+    <h1>Meet the <span style="color:var(--accent)">Team </span> <br> Behind Your Project</h1>
+    <p>A dedicated group of developers, designers, and strategists passionate about building digital solutions that drive real business results.</p>
+  </section>
+
+  <!-- TEAM SECTION -->
+  <section class="section">
+    <div class="reveal">
+      <h2 class="section-title" style="max-width: 100%; margin: 0 auto 12px;">Expert Professionals</h2>
+      <p class="section-sub" style="max-width: 100%; margin: 0 auto12px;">Every team member brings specialized expertise and years of experience to ensure your project exceeds expectations.</p>
+    </div>
+
+    <div class="team-grid">
+
+      <!-- Team Member 1 -->
+      <div class="team-card reveal stagger-1">
+        <div class="team-photo">👨‍💻</div>
+        <div class="team-info">
+          <div class="team-name">Steve</div>
+          <div class="team-role">Lead Developer</div>
+          <p class="team-bio">Full-stack developer with 5+ years building scalable web applications and e-commerce platforms.</p>
+          <div class="team-specialties">
+            <span class="specialty-badge">HTML/CSS</span>
+            <span class="specialty-badge">JavaScript</span>
+            <span class="specialty-badge">React</span>
+            <span class="specialty-badge">Node.js</span>
+            <span class="specialty-badge">PHP</span>
+            <span class="specialty-badge">MySQL</span>
+          </div>
+          <div class="team-socials">
+            <a href="https://wa.me/919492205132" class="team-social-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/sv_wavetech/" class="team-social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Member 2 -->
+      <div class="team-card reveal stagger-2">
+        <div class="team-photo">👩‍🎨</div>
+        <div class="team-info">
+          <div class="team-name">Vasavi</div>
+          <div class="team-role">UI/UX Designer</div>
+          <p class="team-bio">Creative designer specializing in user-centered design and stunning digital interfaces.</p>
+          <div class="team-specialties">
+            <span class="specialty-badge">Figma</span>
+            <span class="specialty-badge">UI Design</span>
+            <span class="specialty-badge">UX Research</span>
+            <span class="specialty-badge">Branding</span>
+          </div>
+          <div class="team-socials">
+            <a href="https://wa.me/919492205132" class="team-social-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/sv_wavetech/" class="team-social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Member 3 -->
+      <div class="team-card reveal stagger-3">
+        <div class="team-photo">🧑‍💼</div>
+        <div class="team-info">
+          <div class="team-name">Kishore</div>
+          <div class="team-role">Digital Strategist</div>
+          <p class="team-bio">Strategic consultant focused on digital transformation and business growth through technology.</p>
+          <div class="team-specialties">
+            <span class="specialty-badge">Strategy</span>
+            <span class="specialty-badge">SEO</span>
+            <span class="specialty-badge">Analytics</span>
+            <span class="specialty-badge">Marketing</span>
+          </div>
+          <div class="team-socials">
+            <a href="https://wa.me/919492205132" class="team-social-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/sv_wavetech/" class="team-social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- VALUES SECTION -->
+  <section class="section section-alt">
+    <div class="reveal">
+      <div class="section-tag" style="text-align: center;">Our Values</div>
+      <h2 class="section-title" style="text-align: center;">What We Believe In</h2>
+    </div>
+    <div class="why-grid" style="margin-top: 60px;">
+      <div class="why-card reveal stagger-1">
+        <div class="big-num">🎯</div>
+        <h4>Client First</h4>
+        <p>Your business goals drive every decision we make. We succeed when you succeed.</p>
+      </div>
+      <div class="why-card reveal stagger-2">
+        <div class="big-num">⚡</div>
+        <h4>Excellence</h4>
+        <p>We don't compromise on quality. Clean code, stunning designs, every single time.</p>
+      </div>
+      <div class="why-card reveal stagger-3">
+        <div class="big-num">🤝</div>
+        <h4>Transparency</h4>
+        <p>No hidden fees, no false promises. Clear communication from day one to delivery.</p>
+      </div>
+      <div class="why-card reveal stagger-4">
+        <div class="big-num">💡</div>
+        <h4>Innovation</h4>
+        <p>We stay current with latest technologies to keep your business ahead of competition.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="reveal" style="background:var(--accent);padding:80px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:32px;position:relative;z-index:2">
+    <h2 style="font-family:'Syne',sans-serif;font-size:clamp(2.8rem,4vw,2.8rem);font-weight:700;color:#08080f;letter-spacing:-.03em;line-height:1.15;max-width:620px">Ready to work with our team? Let's connect.</h2>
+    <a href="contact.html" style="background:#08080f;color:var(--accent);padding:18px 40px;border-radius:6px;font-weight:700;font-size:.9rem;text-decoration:none;text-transform:uppercase;letter-spacing:.06em;display:inline-block;transition:transform .2s;white-space:nowrap" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform=''">Schedule a Call →</a>
+  </div>
+
+  
+
+   <!-- MOBILE BOTTOM NAV -->
+  <nav class="mob-bottom-nav" id="mobBottomNav">
+    <ul>
+      <li><a href="index.html"><span class="bn-icon"><i class="fa-solid fa-house"></i></span>Home</a></li>
+      <li><a href="portfolio.html"><span class="bn-icon"><i class="fa-solid fa-briefcase"></i></span>Work</a></li>
+      <li><a href="services.html"><span class="bn-icon"><i class="fa-solid fa-bolt"></i></span>Services</a></li>
+      <li><a href="pricing.html"><span class="bn-icon"><i class="fa-solid fa-coins"></i></span>Pricing</a></li>
+      <li><a href="refer.html"><span class="bn-icon"><i class="fa-solid fa-hand-holding-dollar"></i></span>Earn</a></li>
+      <li><a href="contact.html"><span class="bn-icon"><i class="fa-solid fa-phone"></i></span>Contact</a></li>
+    </ul>
+  </nav>
+  <script src="js/main.js"></script>
+  <script>
+    // Set active nav link for this page
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      if (link.href.includes('team.html')) link.classList.add('active');
+      else link.classList.remove('active');
+    });
+    document.querySelectorAll('.mob-bottom-nav a').forEach(link => {
+      if (link.href.includes('team.html')) link.classList.add('active');
+      else link.classList.remove('active');
+    });
+  </script>
+</body>
+</html>

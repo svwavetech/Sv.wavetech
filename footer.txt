@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>footer</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  
+  <style>
+    /* ── 10. FOOTER ── */
+   /* ── REDESIGNED FOOTER ── */
+    .footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 56px 6% 28px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 52px;
+      margin-bottom: 40px;
+    }
+     .footer-brand-desc {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.7;
+      max-width: 280px;
+      margin-top: 12px;
+    }
+    /* Footer social icons */
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .footer-soc-btn {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; text-decoration: none; color: var(--text);
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .footer-soc-btn:hover { transform: translateY(-3px); }
+    .footer-soc-btn.insta:hover { background: #dc2743; border-color: #dc2743; }
+    .footer-soc-btn.fb:hover    { background: #1877F2; border-color: #1877F2; }
+    .footer-soc-btn.yt:hover    { background: #FF0000; border-color: #FF0000; }
+    .footer-soc-btn.wa:hover    { background: #25D366; border-color: #25D366; }
+
+    .footer-col h5 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--muted2);
+      margin-bottom: 16px; font-weight: 700;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul a { color: var(--muted); font-size: 0.86rem; text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--accent); }
+
+        /* Footer bottom bar */
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { color: var(--muted); font-size: 0.8rem; }
+    .footer-bottom a { color: var(--accent); text-decoration: none; }
+    /* Made with love tag */
+    .footer-love {
+      display: flex; align-items: center; gap: 6px;
+      color: var(--muted); font-size: 0.8rem;
+    }
+    /* Footer social */
+    .footer-social{display:flex;gap:10px;margin-top:20px}
+    .footer-soc-btn{width:38px;height:38px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;text-decoration:none;color:var(--text);transition:transform .2s,border-color .2s,background .2s}
+    .footer-soc-btn:hover{transform:translateY(-3px)}
+    .footer-soc-btn.insta:hover{background:#dc2743;border-color:#dc2743}
+    .footer-soc-btn.fb:hover{background:#1877F2;border-color:#1877F2}
+    .footer-soc-btn.yt:hover{background:#FF0000;border-color:#FF0000}
+    .footer-soc-btn.wa:hover{background:#25D366;border-color:#25D366}
+ 
+    .heart {
+      color: #ff4d6d;
+      animation: heartbeat 1.4s ease-in-out infinite;
+      display: inline-block;
+    }
+    @keyframes heartbeat {
+      0%,100%{ transform: scale(1); }
+      14%    { transform: scale(1.25); }
+      28%    { transform: scale(1); }
+      42%    { transform: scale(1.15); }
+      56%    { transform: scale(1); }
+    }
+
+</style>
+
+
+
+</head>
+<body>
+  <!-- ══════════════════════════════════════════════════
+       REDESIGNED FOOTER
+       Social icons repeated here for easy access.
+       To update links: search "YOUR_FACEBOOK_LINK" etc.
+       ══════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-top">
+
+      <!-- Brand + social icons -->
+      <div>
+        <a href="index.html" class="nav-logo">SV<span>.</span>WaveTech</a>
+        <p class="footer-brand-desc">
+          Web developers from Rajahmundry building fast, professional websites
+          for businesses across India. Clean code, honest pricing, real results.
+        </p>
+        <!-- Footer social icon row -->
+        <div class="footer-social">
+          <a href="https://www.instagram.com/sv_wavetech/" class="footer-soc-btn insta" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="YOUR_FACEBOOK_LINK"                      class="footer-soc-btn fb"    target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="YOUR_YOUTUBE_LINK"                       class="footer-soc-btn yt"    target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://wa.me/919492205132"              class="footer-soc-btn wa"    target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- Services column -->
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="services.html">Business Websites</a></li>
+          <li><a href="services.html">E-Commerce Stores</a></li>
+          <li><a href="services.html">Landing Pages</a></li>
+          <li><a href="services.html">Site Redesign</a></li>
+          <li><a href="services.html">SEO & Speed</a></li>
+          <li><a href="services.html">Maintenance</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick links column -->
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="about.html">About Me</a></li>
+          <li><a href="portfolio.html">My Work</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <p>© 2026 SV.WaveTech | Web Developers, Rajahmundry, AP</p>
+      <div class="footer-love">
+        Made with <span class="heart">♥</span> in Rajahmundry 🇮🇳
+      </div>
+    </div>
+  </footer>
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
